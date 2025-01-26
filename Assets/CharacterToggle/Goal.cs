@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
+    public GameObject gameController;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -11,8 +13,17 @@ public class Goal : MonoBehaviour
             {
                 playerToggle.ToggleState();
             }
+            
+            ToggleGameController();
+            Debug.Log("Goal reached! Game Controller toggled.");
+        }
+    }
 
-            Debug.Log("Goal reached!");
+    private void ToggleGameController()
+    {
+        if (gameController != null)
+        {
+            gameController.SetActive(!gameController.activeSelf);
         }
     }
 }
